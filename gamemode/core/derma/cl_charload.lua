@@ -14,11 +14,13 @@ local function SetCharacter(self, character)
 		local bodygroups = character:GetData("groups", nil)
 
 		if (istable(bodygroups)) then
-			for k, v in pairs(bodygroups) do
-				self:SetBodygroup(k, v)
+			for i = 0, (self:GetNumBodyGroups() - 1) do
+				self:SetBodygroup(i, bodygroups[i] or 0)
 			end
 		else
-			self:SetBodyGroups("000000000")
+			for i = 0, (self:GetNumBodyGroups() - 1) do
+				self:SetBodygroup(i, 0)
+			end
 		end
 	else
 		self:SetModel(errorModel)
